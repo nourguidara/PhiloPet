@@ -1,0 +1,75 @@
+/* General Card Styling */
+.dog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 303px;
+    cursor: pointer;
+    height: 300px; /* Set a fixed height for all cards */
+
+  }
+  
+  .dog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Card Image Styling */
+  .dog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #eaeaea;
+  }
+  
+
+.card-subtitle {
+    overflow: auto;
+    height: 19px;
+}
+  
+ 
+  
+  /* Location Text */
+  .card-text {
+    color: #888;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Icons Row Styling */
+  .icons-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+  
+  .icon {
+    color: #ff6347; /* Tomato color */
+    font-size: 1.5rem;
+  }
+  
+  /* Buttons (Share and Favorite) */
+  .card-buttons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .card-buttons button:hover {
+    color: #007bff; /* Change color on hover */
+  }
+  
+  .card-buttons button:focus {
+    outline: none;
+  }
+  
+  /* Ad Posted Date */
+  .posted-date {
+    font-size: 0.75rem;
+    color: #999;
+    text-align: right;
+  }
+  

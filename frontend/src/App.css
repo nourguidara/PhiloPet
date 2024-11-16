@@ -2,7 +2,26 @@
   text-align: center;
 }
 
+/* 
+.dog-card {
+  border-radius: 10px;
+  overflow: hidden;
+}
 
+.dog-image {
+  height: 200px;
+  object-fit: cover;
+} */
+
+
+
+.CardStyle{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 44px;
+  justify-content: center;
+  margin-top: 12%;
+}
 
 
 .App-header {
