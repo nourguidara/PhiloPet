@@ -3,8 +3,8 @@ import React from 'react';
 const Shop = () => {
   return (
     <div>
-      <h1>Cat Adoption Page</h1>
-      <p>Welcome to the dog adoption section!</p>
+      <h1>shop Page</h1>
+      <p>Welcome to the shop section!</p>
     </div>
   );
 };
