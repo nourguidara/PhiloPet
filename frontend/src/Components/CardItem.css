@@ -1,5 +1,5 @@
 /* General Card Styling */
-.dog-card {
+.pet-card {
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -11,23 +11,29 @@
 
   }
   
-  .dog-card:hover {
+  .pet-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
   
   /* Card Image Styling */
-  .dog-image {
+  .pet-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-bottom: 2px solid #eaeaea;
   }
+
+
+.pet-carousel {
+  max-height: 200px;
+  overflow: hidden;
+}
   
 
 .card-subtitle {
     overflow: auto;
-    height: 19px;
+    height: 20px;
 }
   
  

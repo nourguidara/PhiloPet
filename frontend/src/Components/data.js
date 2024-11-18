@@ -3,43 +3,114 @@ export const dogs = [
       name: 'Jackson',
       breed: 'ShihTzu',
       location: 'Cranleigh',
-      image: 'https://via.placeholder.com/150',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
+      
       posted: 'today',
     },
     {
       name: 'Dotty',
       breed: 'Staffordshire Bull Terrier, Jack Russell',
       location: 'Canterbury',
-      image: 'https://via.placeholder.com/150',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
       posted: '1 day ago',
     },
     {
       name: 'Luna',
       breed: 'Husky - Siberian',
       location: 'Camberley',
-      image: 'https://via.placeholder.com/150',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
       posted: '1 day ago',
     },
     {
         name: 'Bello',
         breed: 'Berger Allemand',
         location: 'Tunisia',
-        image: 'https://via.placeholder.com/150',
+        images: [
+          'https://via.placeholder.com/150',
+          'https://via.placeholder.com/300x201',
+          'https://via.placeholder.com/300x202'
+        ],
         posted: '1 day ago',
       },
       {
         name: 'Bello',
         breed: 'Berger Allemand',
         location: 'Tunisia',
-        image: 'https://via.placeholder.com/150',
+        images: [
+          'https://via.placeholder.com/150',
+          'https://via.placeholder.com/300x201',
+          'https://via.placeholder.com/300x202'
+        ],
         posted: '1 day ago',
       },
       {
         name: 'Bello',
         breed: 'Berger Allemand ffffffffffffffffffffffffffffff hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
         location: 'Tunisia',
-        image: 'https://via.placeholder.com/150',
+        images: [
+          'https://via.placeholder.com/150',
+          'https://via.placeholder.com/300x201',
+          'https://via.placeholder.com/300x202'
+        ],
         posted: '1 day ago',
       }
   ];
   
+  export const cats = [
+    {
+      name: 'Whiskers',
+      breed: 'Siamese',
+      location: 'Sousse',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
+      posted: '2 days ago',
+    },
+    {
+      name: 'Mittens',
+      breed: 'Persian',
+      location: 'Tunis',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
+      posted: '3 days ago',
+    },
+    {
+      name: 'Bella',
+      breed: 'Maine Coon',
+      location: 'La Marsa',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
+      posted: '4 days ago',
+    },
+    {
+      name: 'Leo',
+      breed: 'Bengal',
+      location: 'Carthage',
+      images: [
+        'https://via.placeholder.com/150',
+        'https://via.placeholder.com/300x201',
+        'https://via.placeholder.com/300x202'
+      ],
+      posted: '5 days ago',
+    }
+  ];

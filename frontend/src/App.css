@@ -13,6 +13,13 @@
   object-fit: cover;
 } */
 
+.wishlist-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
 
 
 .CardStyle{

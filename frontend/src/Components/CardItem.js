@@ -1,40 +1,38 @@
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
-
-// function CardItem() {
-//   return (
-//     <Card style={{ width: '18rem' }}>
-//       <Card.Img variant="top" src="holder.js/100px180" />
-//       <Card.Body>
-//         <Card.Title>Card Title</Card.Title>
-//         <Card.Text>
-//           Some quick example text to build on the card title and make up the
-//           bulk of the card's content.
-//         </Card.Text>
-//         <Button variant="primary">Go somewhere</Button>
-//       </Card.Body>
-//     </Card>
-//   );
-// }
-
-// export default CardItem;
-
-import React from 'react';
-import { Card, Badge, Row, Col, Button } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Card, Badge, Row, Col, Button, Carousel } from 'react-bootstrap';
 import { FaPaw, FaBaby, FaDog, FaCat, FaCheck, FaTimes, FaShareAlt, FaHeart, FaBroom } from 'react-icons/fa';
 import './CardItem.css';
+import { useWishlist } from './WishlistContext';
 
+const CardItem = ({ pet, type }) => {
 
-const CardItem = ({ dog }) => {
+  // const [isLiked, setIsLiked] = useState(false)
+
+  // const handleClick = ()=>{
+  //   setIsLiked(!isLiked);
+  // };
+  const { wishlist, toggleWishlist } = useWishlist();
+  const isLiked = wishlist.some((item) => item.name === pet.name);
+
+  const handleClick = () => {
+    toggleWishlist(pet);
+  };
+  
   return (
-    <Card className="dog-card mb-4 shadow-sm">
-      <Card.Img variant="top" src={dog.image} alt={dog.name} className="dog-image" />
+    <Card className="pet-card mb-4 shadow-sm">
+      <Carousel className="pet-carousel">
+        {pet.images.map((image, index) => (
+          <Carousel.Item key={index}>
+            <img className="d-block w-100 pet-image" src={image} alt={`${pet.name} - ${index + 1}`} />
+          </Carousel.Item>
+        ))}
+      </Carousel>
       <Card.Body>
         <Badge bg="secondary" className="mb-2">New</Badge>
-        <Card.Title>{dog.name}</Card.Title>
-        <Card.Subtitle>{dog.breed}</Card.Subtitle>
+        <Card.Title>{pet.name}</Card.Title>
+        <Card.Subtitle>{pet.breed}</Card.Subtitle>
         <Card.Text >
-          <small>Location: {dog.location}</small>
+          <small>Location: {pet.location}</small>
         </Card.Text>
         <Row className="icons-row mb-3">
           <Col><FaDog className="icon" /></Col>
@@ -46,9 +44,11 @@ const CardItem = ({ dog }) => {
         <div className="d-flex justify-content-between align-items-center">
           <div>
            
-            <Button variant="light" ><FaHeart /></Button>
+            <Button variant="light" onClick={handleClick}>
+            <FaHeart style={{ color: isLiked ? 'red' : 'black' }} />
+            </Button>
           </div>
-          <small className="text-muted">Ad posted {dog.posted}</small>
+          <small className="text-muted">Ad posted {pet.posted}</small>
         </div>
       </Card.Body>
     </Card>

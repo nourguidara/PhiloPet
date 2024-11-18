@@ -7,13 +7,16 @@ import Shop from './Pages/Shop';
 import DogAdoption from './Pages/DogAdoption';
 import CatAdoption from './Pages/CatAdoption';
 import GivePet from './Pages/GivePet';
+import Wishlist from './Pages/Wishlist';
+
 import NavigationBar from './Components/NavigationBar';
+import { WishlistProvider } from './Components/WishlistContext';
 
 
 
 function App() {
   return (
-
+    <WishlistProvider>
     <BrowserRouter>
     <NavigationBar />
     <Routes>
@@ -23,9 +26,12 @@ function App() {
         <Route path="/dog-adoption" element={<DogAdoption />} />
         <Route path="/cat-adoption" element={<CatAdoption />} />
         <Route path="/give-pet" element={<GivePet />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        
+        
     </Routes>
     </BrowserRouter>
-
+    </WishlistProvider>
     
   );
 }
