@@ -8,8 +8,9 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString(),
       
-      posted: 'today',
+      posted: 'today'
     },
     {
       name: 'Dotty',
@@ -20,7 +21,9 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
-      posted: '1 day ago',
+      createdAt: new Date().toISOString(),
+
+      posted: '1 day ago'
     },
     {
       name: 'Luna',
@@ -31,6 +34,7 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date().toISOString(),
       posted: '1 day ago',
     },
     {
@@ -42,6 +46,7 @@ export const dogs = [
           'https://via.placeholder.com/300x201',
           'https://via.placeholder.com/300x202'
         ],
+        createdAt: new Date().toISOString(),
         posted: '1 day ago',
       },
       {
@@ -53,6 +58,7 @@ export const dogs = [
           'https://via.placeholder.com/300x201',
           'https://via.placeholder.com/300x202'
         ],
+        createdAt: new Date().toISOString(),
         posted: '1 day ago',
       },
       {
@@ -64,6 +70,7 @@ export const dogs = [
           'https://via.placeholder.com/300x201',
           'https://via.placeholder.com/300x202'
         ],
+        createdAt: new Date().toISOString(),
         posted: '1 day ago',
       }
   ];
@@ -78,6 +85,7 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date().toISOString(),
       posted: '2 days ago',
     },
     {
@@ -89,6 +97,7 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date().toISOString(),
       posted: '3 days ago',
     },
     {
@@ -100,6 +109,7 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date().toISOString(),
       posted: '4 days ago',
     },
     {
@@ -111,6 +121,7 @@ export const dogs = [
         'https://via.placeholder.com/300x201',
         'https://via.placeholder.com/300x202'
       ],
+      createdAt: new Date().toISOString(),
       posted: '5 days ago',
     }
   ];

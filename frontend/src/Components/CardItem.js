@@ -4,7 +4,7 @@ import { FaPaw, FaBaby, FaDog, FaCat, FaCheck, FaTimes, FaShareAlt, FaHeart, FaB
 import './CardItem.css';
 import { useWishlist } from './WishlistContext';
 
-const CardItem = ({ pet, type }) => {
+const CardItem = ({ pet, type,createdAt  }) => {
 
   // const [isLiked, setIsLiked] = useState(false)
 
@@ -17,6 +17,13 @@ const CardItem = ({ pet, type }) => {
   const handleClick = () => {
     toggleWishlist(pet);
   };
+
+  const isNew = () => {
+    const now = new Date();
+    const createdDate = new Date(createdAt);
+    const timeDifference = now - createdDate;
+    return timeDifference <= 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+  };
   
   return (
     <Card className="pet-card mb-4 shadow-sm">
@@ -28,7 +35,7 @@ const CardItem = ({ pet, type }) => {
         ))}
       </Carousel>
       <Card.Body>
-        <Badge bg="secondary" className="mb-2">New</Badge>
+      {isNew() && <Badge bg="secondary" className="mb-2">New</Badge>}
         <Card.Title>{pet.name}</Card.Title>
         <Card.Subtitle>{pet.breed}</Card.Subtitle>
         <Card.Text >

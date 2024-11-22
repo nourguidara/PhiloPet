@@ -12,7 +12,7 @@ const DogAdoption = () => {
 
       {dogs.map((dog, index) => (
           <div  key={index}>
-            <CardItem key={index} pet={dog} type="dog" />
+            <CardItem key={index} pet={dog} type="dog" createdAt={dog.createdAt} />
           </div>
         ))}
       </div>

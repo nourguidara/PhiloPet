@@ -1,14 +1,18 @@
 /* General Card Styling */
 .pet-card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    width: 303px;
-    cursor: pointer;
-    height: 300px; /* Set a fixed height for all cards */
-
+  
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 303px;
+  height: 350px; /* Fixed height for uniformity */
+  display: flex;
+  flex-direction: column;
+  
+ 
+  cursor: pointer;
   }
   
   .pet-card:hover {
@@ -50,6 +54,7 @@
     display: flex;
     justify-content: space-between;
     margin: 1rem 0;
+    
   }
   
   .icon {
@@ -77,5 +82,13 @@
     font-size: 0.75rem;
     color: #999;
     text-align: right;
+  }
+
+  .card-body{
+    height: 240px;
+    align-content: space-around;
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width of the card */
+    
   }
   
