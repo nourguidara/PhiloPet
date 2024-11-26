@@ -3,19 +3,21 @@ import { Card, Badge, Row, Col, Button, Carousel } from 'react-bootstrap';
 import { FaPaw, FaBaby, FaDog, FaCat, FaCheck, FaTimes, FaShareAlt, FaHeart, FaBroom } from 'react-icons/fa';
 import './CardItem.css';
 import { useWishlist } from './WishlistContext';
+import { useNavigate } from 'react-router-dom';
 
-const CardItem = ({ pet, type,createdAt  }) => {
+const CardItem = ({ pet, type,createdAt }) => {
 
-  // const [isLiked, setIsLiked] = useState(false)
-
-  // const handleClick = ()=>{
-  //   setIsLiked(!isLiked);
-  // };
+  const navigate = useNavigate();
   const { wishlist, toggleWishlist } = useWishlist();
-  const isLiked = wishlist.some((item) => item.name === pet.name);
+  const isLiked = wishlist.some((item) => item.id === pet.id); // Use `id` to check
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     toggleWishlist(pet);
+  };
+
+  const handleCardClick = () => {
+    navigate(`/pet-details/${pet.id}`);
   };
 
   const isNew = () => {
@@ -26,7 +28,7 @@ const CardItem = ({ pet, type,createdAt  }) => {
   };
   
   return (
-    <Card className="pet-card mb-4 shadow-sm">
+    <Card className="pet-card mb-4 shadow-sm" onClick={handleCardClick} >
       <Carousel className="pet-carousel">
         {pet.images.map((image, index) => (
           <Carousel.Item key={index}>
@@ -52,7 +54,7 @@ const CardItem = ({ pet, type,createdAt  }) => {
           <div>
            
             <Button variant="light" onClick={handleClick}>
-            <FaHeart style={{ color: isLiked ? 'red' : 'black' }} />
+            <FaHeart style={{ color: isLiked ? 'orange' : 'black' }} />
             </Button>
           </div>
           <small className="text-muted">Ad posted {pet.posted}</small>

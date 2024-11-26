@@ -5,13 +5,11 @@
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  
   width: 303px;
   height: 350px; /* Fixed height for uniformity */
   display: flex;
   flex-direction: column;
-  
- 
   cursor: pointer;
   }
   
@@ -38,13 +36,14 @@
 .card-subtitle {
     overflow: auto;
     height: 20px;
+    color: #A5B68D;
 }
   
  
   
   /* Location Text */
   .card-text {
-    color: #888;
+    color: #A5B68D;
     margin-top: 0.5rem;
     font-size: 0.85rem;
   }
@@ -58,7 +57,7 @@
   }
   
   .icon {
-    color: #ff6347; /* Tomato color */
+    color: #DA8359; /* Tomato color */
     font-size: 1.5rem;
   }
   
@@ -69,26 +68,24 @@
     cursor: pointer;
   }
   
-  .card-buttons button:hover {
-    color: #007bff; /* Change color on hover */
-  }
+
   
-  .card-buttons button:focus {
-    outline: none;
-  }
+
   
   /* Ad Posted Date */
   .posted-date {
     font-size: 0.75rem;
-    color: #999;
+    color: #A5B68D;
     text-align: right;
   }
 
   .card-body{
+    
     height: 240px;
     align-content: space-around;
     bottom: 0; /* Stick to the bottom */
     width: 100%; /* Full width of the card */
+    
     
   }
   

@@ -41,3 +41,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+
+html, body {
+
+  min-height:100%; /* Ensures body expands dynamically */
+}
+
+body {
+  background-image: url('https://img.freepik.com/free-vector/cute-animal-paw-print-pattern-background-fauna-fun_1017-44714.jpg?t=st=1732653300~exp=1732656900~hmac=d1570bb17ba1847f5fa9d99529dd720477475369722be2e3e05f8ca42e341fa5&w=2000');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: fit-content;
+}
