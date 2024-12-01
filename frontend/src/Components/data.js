@@ -1,3 +1,4 @@
+import { FaDog, FaCat, FaBaby, FaPaw, FaBroom } from 'react-icons/fa';
 export const dogs = [
     {
       id: '1',
@@ -10,8 +11,15 @@ export const dogs = [
         'https://images.ctfassets.net/440y9b545yd9/53KkmFPEBEsbxCzTDjrDmm/5bccce4f47e5f1c68ae1dabdd8db1293/German-Shepherd850.jpg'
       ],
       createdAt: new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString(),
-      
-      posted: 'today'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      posted: '1 day ago',
+      features: [
+        'Can live with other dogs' ,
+        'Can live with other cats' ,
+        'Friendly with children and babies' ,
+        'Microchipped' ,
+        'House-trained' ,
+      ],
     },
     {
       id: '2',
@@ -24,7 +32,7 @@ export const dogs = [
         'https://wellbeloved.com/cdn/shop/articles/JWB-UK-10.jpg?v=1719574462'
       ],
       createdAt: new Date().toISOString(),
-
+      
       posted: '1 day ago'
     },
     {
@@ -135,3 +143,5 @@ export const dogs = [
       posted: '5 days ago',
     }
   ];
+
+  

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 import { dogs, cats } from '../Components/data'; // Import your pet data arrays
-
+import './PetDetails.css';
 const PetDetails = () => {
   const { id } = useParams();
 
@@ -15,10 +15,11 @@ const PetDetails = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-4">{pet.name}</h1>
-      <Row>
+      <h1>{pet.name}</h1>
+
+      <Row >
         {/* Left Column: Images */}
-        <Col md={6}>
+        <Col md={7}>
           <img
             src={pet.images[0]}
             alt={pet.name}
@@ -38,10 +39,12 @@ const PetDetails = () => {
         </Col>
 
         {/* Right Column: Pet Details */}
-        <Col md={6}>
-          <Card>
+        <Col md={4}>
+          <Card className="details shadow-sm">
             <Card.Body>
-              <Card.Title>Details</Card.Title>
+              <Card.Title>
+                <span className="title">Details</span>
+              </Card.Title>
               <Card.Text>
                 <strong>Breed:</strong> {pet.breed}
               </Card.Text>

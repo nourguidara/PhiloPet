@@ -48,28 +48,6 @@
     font-size: 0.85rem;
   }
   
-  /* Icons Row Styling */
-  .icons-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    
-  }
-  
-  .icon {
-    color: #DA8359; /* Tomato color */
-    font-size: 1.5rem;
-  }
-  
-  /* Buttons (Share and Favorite) */
-  .card-buttons button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-
-  
 
   
   /* Ad Posted Date */
@@ -89,3 +67,13 @@
     
   }
   
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    color: #ff6347;
+  }

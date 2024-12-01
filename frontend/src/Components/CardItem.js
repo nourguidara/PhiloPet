@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { Card, Badge, Row, Col, Button, Carousel } from 'react-bootstrap';
-import { FaPaw, FaBaby, FaDog, FaCat, FaCheck, FaTimes, FaShareAlt, FaHeart, FaBroom } from 'react-icons/fa';
+import { Card, Badge, Row, Col, Button, Carousel, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { FaPaw, FaBaby, FaDog, FaCat, FaHeart, FaBroom } from 'react-icons/fa';
 import './CardItem.css';
 import { useWishlist } from './WishlistContext';
 import { useNavigate } from 'react-router-dom';
@@ -26,6 +26,14 @@ const CardItem = ({ pet, type,createdAt }) => {
     const timeDifference = now - createdDate;
     return timeDifference <= 24 * 60 * 60 * 1000; // 24 hours in milliseconds
   };
+
+  const iconMapping = {
+    'Can live with other dogs': <FaDog />,
+    'Can live with other cats': <FaCat />,
+    'Friendly with children and babies': <FaBaby />,
+    'Microchipped': <FaPaw />,
+    'House-trained': <FaBroom />,
+  };
   
   return (
     <Card className="pet-card mb-4 shadow-sm" onClick={handleCardClick} >
@@ -44,20 +52,27 @@ const CardItem = ({ pet, type,createdAt }) => {
           <small>Location: {pet.location}</small>
         </Card.Text>
         <Row className="icons-row mb-3">
-          <Col><FaDog className="icon" /></Col>
-          <Col><FaCat className="icon" /></Col>
-          <Col><FaBaby className="icon" /></Col>
-          <Col><FaPaw className="icon" /></Col>
-          <Col><FaBroom className="icon" /></Col>
+          {pet.features &&
+            pet.features.map((description, index) => (
+              <Col key={index}>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>{description}</Tooltip>}
+                >
+                  <div className="icon-container">{iconMapping[description]}</div>
+                </OverlayTrigger>
+              </Col>
+            ))}
         </Row>
+
         <div className="d-flex justify-content-between align-items-center">
           <div>
            
             <Button variant="light" onClick={handleClick}>
-            <FaHeart style={{ color: isLiked ? 'orange' : 'black' }} />
+            <FaHeart style={{ color: isLiked ? '#b68147' : 'black' }} />
             </Button>
           </div>
-          <small className="text-muted">Ad posted {pet.posted}</small>
+          <small className="text-muted">posted on {pet.posted}</small>
         </div>
       </Card.Body>
     </Card>
