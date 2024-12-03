@@ -1,10 +1,12 @@
 import React from 'react';
 
+import PetForm from  '../Components/PetForm'
+
 const GivePet = () => {
   return (
     <div>
-      <h1>give pet Adoption Page</h1>
-      <p>Welcome to the dog adoption section!</p>
+     
+      <PetForm />
     </div>
   );
 };

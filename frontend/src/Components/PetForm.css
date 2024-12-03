@@ -1,0 +1,184 @@
+.pet-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #f7d7e5;
+    border-radius: 8px;
+    background: #fff0f7e3;
+  }
+  
+  .pet-form h2, .pet-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .pet-form label {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .pet-form input, .pet-form select {
+    width: 94%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .pet-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4b7a84;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pet-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .key-facts {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left: 40px;
+  }
+
+  .pet-form label{
+    display: flex;
+    align-items: center;
+  }
+
+  .key-facts input{
+    width: 10%;
+  }
+
+  .location{
+    gap: 29px;
+  }
+  .pet-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .photo-section {
+    margin-bottom: 20px;
+  }
+  
+  .photo-section h3 {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .photo-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .photo-box {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .photo-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px dashed #959595;
+    background: #ffffffb0;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .photo-label:hover {
+    border-color: #000000;
+  }
+  
+  .photo-label input[type="file"] {
+    display: none;
+  }
+  
+  .photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: #999;
+  }
+  
+  .photo-placeholder.uploaded {
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .placeholder-icon {
+    font-size: 40px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  
+  .photo-placeholder span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .uploaded-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .characteristics label{
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .characteristics{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .description-section textarea{
+    height: 100px;
+    width: 657px;
+  }
+
+  .fees-options input{
+    
+    width: 10%;
+  }
+  
+  .enterfee{
+    width: 100px;
+    margin-left: 23px;
+    margin-bottom: 34px;
+  }
+  
+  
+
+ 
+  
+  
+  
+  
