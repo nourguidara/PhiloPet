@@ -1,0 +1,70 @@
+.login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #DA8359;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* This will still apply to the login form itself */
+    opacity: 0.9; /* Slight transparency for better contrast with the background */
+}
+
+.login h2 {
+    text-align: center;
+    color: #DA8359;
+    margin-bottom: 20px;
+}
+
+.login .form-group {
+    margin-bottom: 15px;
+}
+
+.login label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login .submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #DA8359;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.login .submit-button:hover {
+    background-color: #DA8359;
+}
+
+.login p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login a {
+    color: #DA8359;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}

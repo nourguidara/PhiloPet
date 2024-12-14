@@ -5,6 +5,8 @@
     border: 1px solid #f7d7e5;
     border-radius: 8px;
     background: #fff0f7e3;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   
   .pet-form h2, .pet-form h3 {

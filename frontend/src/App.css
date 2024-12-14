@@ -43,15 +43,9 @@
 }
 
 
-html, body {
 
-  min-height:100%; /* Ensures body expands dynamically */
-}
 
 body {
   background-image: url('https://img.freepik.com/free-vector/cartoon-style-paw-print-pattern-background-fauna-fun-vector_1017-47622.jpg?t=st=1733053309~exp=1733056909~hmac=d0658d5bd60a7aaf64ea31295daacf86135b9de1ee2796622edc9d5350a52ddd&w=2000');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: fit-content;
+
 }

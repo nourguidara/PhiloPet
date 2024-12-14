@@ -1,0 +1,146 @@
+/* General Styling for the Navbar */
+.custom-navbar {
+    background-color: #A5B68D; /* Olive Green for the Navbar background */
+    border-bottom: 2px solid #ECDFCC; /* Beige for the subtle border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    padding: 0.5rem 1rem; /* Consistent spacing */
+}
+
+/* Brand Styling */
+.custom-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FCFAEE; /* Creamy White for the brand text */
+    text-decoration: none;
+}
+
+.custom-brand:hover {
+    color: #DA8359; /* Warm Terracotta for hover effect */
+}
+
+/* Links in the Navbar */
+.custom-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FCFAEE; /* Creamy White for link text */
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.custom-link:hover {
+    color: #DA8359; /* Warm Terracotta for hover effect */
+    text-decoration: underline;
+}
+
+/* Dropdown Styling */
+.custom-dropdown .dropdown-toggle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FCFAEE; /* Match link color */
+    text-decoration: none;
+}
+
+.custom-dropdown .dropdown-toggle:hover {
+    color: #DA8359; /* Hover effect */
+}
+
+.custom-dropdown-item {
+    font-size: 0.9rem;
+    color: #A5B68D; /* Olive Green for dropdown text */
+    background-color: #FCFAEE; /* Creamy White for dropdown background */
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #ECDFCC; /* Beige for hover background */
+    color: #DA8359; /* Warm Terracotta for hover text */
+}
+
+/* Responsive Nav Toggle */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white for toggle border */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FCFAEE' viewBox='0 0 30 30'%3E%3Cpath stroke='%23FCFAEE' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Adjust Nav for Collapsed State */
+.navbar-collapse {
+    justify-content: space-between;
+}
+
+.custom-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Active Link Styling */
+.custom-link.active,
+.custom-dropdown-item.active {
+    color: #DA8359; /* Warm Terracotta for active link */
+    font-weight: bold;
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    .custom-link {
+        margin: 0.5rem 0;
+    }
+
+    .custom-navbar {
+        padding: 1rem;
+    }
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #DA8359;
+    color: #FCFAEE;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .search-bar {
+    width: 40%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .header-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .header-icons button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .header-icons button:hover {
+    color: #ff7f00;
+  }
+
+  .favorites{
+    background-color: transparent;
+    border: none;
+  }
+
+  
