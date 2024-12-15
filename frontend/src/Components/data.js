@@ -1,4 +1,26 @@
-import { FaDog, FaCat, FaBaby, FaPaw, FaBroom } from 'react-icons/fa';
+function calculatePosted(createdAt) {
+  const now = new Date(); // Current date and time
+  const createdDate = new Date(createdAt); // Convert createdAt to Date object
+  
+  const differenceInMs = now - createdDate; // Difference in milliseconds
+  
+  const seconds = Math.floor(differenceInMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    return `${days} day${days > 1 ? 's' : ''} ago`;
+  } else if (hours > 0) {
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  } else if (minutes > 0) {
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  } else {
+    return `Just now`;
+  }
+}
+
+
 export const dogs = [
     {
       id: '1',
@@ -10,9 +32,8 @@ export const dogs = [
         'https://cdn.prod.website-files.com/61424e4d194b43f2e03c009c/66a1f751d7b3e7b4afd48760_20240725_blog_thumbnail1.jpg',
         'https://images.ctfassets.net/440y9b545yd9/53KkmFPEBEsbxCzTDjrDmm/5bccce4f47e5f1c68ae1dabdd8db1293/German-Shepherd850.jpg'
       ],
-      createdAt: new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString(),
+      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      posted: '1 day ago',
       features: [
         'Can live with other dogs' ,
         'Can live with other cats' ,
@@ -33,7 +54,7 @@ export const dogs = [
       ],
       createdAt: new Date().toISOString(),
       
-      posted: '1 day ago'
+      
     },
     {
       id: '3',
@@ -46,7 +67,7 @@ export const dogs = [
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc0WiJjZ4EGNUXc-D2-E2UjnBBkN22AOOVVdWU6ycNHI9jo5k911nQToUdQlQYzbGjhhY&usqp=CAU'
       ],
       createdAt: new Date().toISOString(),
-      posted: '1 day ago',
+      
     },
     {
       id: '4',
@@ -59,7 +80,7 @@ export const dogs = [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ02JM-sUMhWMdG04WbZ5sM9LuRoVbID-yUfR2QF957pfvbyN6WRFvfmXueJhU3eI-iGcA&usqp=CAU'
         ],
         createdAt: new Date().toISOString(),
-        posted: '1 day ago',
+       
       },
       {
         id: '5',
@@ -72,7 +93,7 @@ export const dogs = [
           'https://i2.obozrevatel.com/news/2024/2/11/image2024-02-0814-57-58.png?size=930x441'
         ],
         createdAt: new Date().toISOString(),
-        posted: '1 day ago',
+       
       },
       {
         id: '6',
@@ -85,10 +106,18 @@ export const dogs = [
           'https://t3.ftcdn.net/jpg/09/31/82/02/360_F_931820263_ix6s7N5p5jpnCx0BjZ8RaBEnNk9Zd3Nr.jpg'
         ],
         createdAt: new Date().toISOString(),
-        posted: '1 day ago',
+  
       }
   ];
+
+  dogs.forEach(dog => {
+    dog.posted = calculatePosted(dog.createdAt);
+  });
   
+  console.log(dogs);
+  
+ 
+
   export const cats = [
     {
       id: '7',
@@ -101,7 +130,7 @@ export const dogs = [
         'https://images.pexels.com/photos/20787/pexels-photo.jpg?cs=srgb&dl=pexels-kmerriman-20787.jpg&fm=jpg'
       ],
       createdAt: new Date().toISOString(),
-      posted: '2 days ago',
+      
     },
     {
       id: '8',
@@ -114,7 +143,7 @@ export const dogs = [
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA31zaVLwJGo6YpkCrVbm43kb_H3z3L1jajWz46PGwdM25S7woXJ1OIPIxcJ1EHC4SdjA&usqp=CAU'
       ],
       createdAt: new Date().toISOString(),
-      posted: '3 days ago',
+      
     },
     {
       id: '9',
@@ -127,7 +156,7 @@ export const dogs = [
         'https://images.freeimages.com/images/large-previews/664/calico-kitten-rooftop-sunbathing-0410-5699214.jpg?fmt=webp&w=500'
       ],
       createdAt: new Date().toISOString(),
-      posted: '4 days ago',
+      
     },
     {
       id: '10',
@@ -140,8 +169,12 @@ export const dogs = [
         'https://i.pinimg.com/736x/b2/ea/6e/b2ea6e55dadc8fdeb55c2ce49eddd4d2.jpg'
       ],
       createdAt: new Date().toISOString(),
-      posted: '5 days ago',
+      
     }
   ];
 
+  cats.forEach(cat => {
+    cat.posted = calculatePosted(cat.createdAt);
+  });
   
+  console.log(cats);
