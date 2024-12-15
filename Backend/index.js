@@ -140,9 +140,13 @@
 const express=require("express");
 const app=express();
 const dogRoute=require("./Routes/dogRoute")
+const connectDb=require('./Configuration/connectDb')
+
 const dotenv=require("dotenv")
 dotenv.config();
-const port=process.env.PORT
+const port=process.env.PORT;
+connectDb();
+
 app.listen(port, (error)=>{
 if(error){console.log("Server Failed")}
 else{ console.log(`Server Started on port ${port}`)}

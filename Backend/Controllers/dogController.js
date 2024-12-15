@@ -1,45 +1,7 @@
+const Dog = require("../models/Dog");
+
 const { formatDistanceToNow } = require("date-fns");
 
-let dogs = [
-  {
-    id: 1,
-    name: "Max",
-    breed: "Bulldog",
-    sex: "male",
-    age: "3",
-    fees:"free",
-    location: "Los Angeles, CA",
-    images: [],
-    description: "Loyal and strong.",
-    features: [
-      "Can live with other dogs",
-      "Can live with other cats",
-      "Friendly with children and babies",
-    ],
-    contact: "51087333",
-    createdAt: "2024-12-01T10:00:00Z",
-  },
-  {
-    id: 2,
-    name: "Bella",
-    breed: "Poodle",
-    location: "San Francisco, CA",
-    sex: "male",
-    age: "3",
-    fees:"free",
-    images: [],
-    description: "Friendly and intelligent.",
-    features: [
-      "Can live with other dogs",
-      "Can live with other cats",
-      "Friendly with children and babies",
-      "Microchipped",
-      "House-trained",
-    ],
-    contact: "51087253",
-    createdAt: "2024-12-02T11:00:00Z",
-  },
-];
 
 // Helper function to format time since the dog was posted
 function getPosted(createdAt) {
@@ -47,96 +9,121 @@ function getPosted(createdAt) {
 }
 
 // GET: Fetch all dogs
-const getDogs = (req, res) => {
-  const enrichedDogs = dogs.map((dog) => ({
-    ...dog,
-    posted: getPosted(dog.createdAt), // Add dynamically calculated field
-  }));
-  res.status(200).json({ dogs: enrichedDogs });
+const getDogs = async (req, res) => {
+  try {
+    const dogs = await Dog.find(); // Fetch all dogs from the database
+    if (dogs && dogs.length > 0) {
+      const enrichedDogs = dogs.map((dog) => ({
+        ...dog.toObject(), // Convert Mongoose document to plain object
+        posted: getPosted(dog.createdAt), // Add dynamically calculated field
+      }));
+      res.status(200).json({ dogs: enrichedDogs });
+    } else {
+      res.status(404).json({ msg: "No dogs found" });
+    }
+  } catch (error) {
+    console.error("Error fetching dogs:", error);
+    res.status(500).json({ msg: "Error fetching dogs" });
+  }
 };
 
 // GET: Fetch a single dog by ID
-const getOneDog = (req, res) => {
-  const dogId = parseInt(req.params.id); // Get dog ID from URL parameter
-  const foundDog = dogs.find((dog) => dog.id === dogId); // Find the dog by ID
-  
-  if (!foundDog) {
-    return res.status(404).json({ msg: "Dog not found" });
+const getOneDog = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const foundDog = await Dog.findById(id); 
+    if (foundDog) {
+      res.status(200).json({ dog: foundDog }); 
+    } else {
+      res.status(404).json({ msg: "No dog found with the given ID" }); 
+    }
+  } catch (error) {
+    console.error("Error retrieving dog:", error); 
+    res.status(500).json({ msg: "Error on retrieving the dog" }); 
   }
-  
-  // If dog is found, send the dog data with a 200 response
-  res.status(200).json({ foundDog });
 };
 
 // POST: Add a new dog
-const postDog = (req, res) => {
-  const { name, breed, location, images, description, features, contact, fees,sex,age } = req.body;
+const postDog = async (req, res) => {
+  const { name, breed, location, images, description, features, contact, fees, sex, age } = req.body;
 
+  // Check required fields
   if (!name || !breed || !location) {
-    return res.status(400).json({ message: "Name, breed, and location are required." });
+    return res.status(400).json({ msg: "Name, breed, and location are required." });
   }
 
-  const newDog = {
-    id: dogs.length + 1,  // Generate a new ID based on the length of the current array
-    name,
-    breed,
-    location,
-    fees,
-    sex,
-    age,
-    images: images || [],
-    description,
-    features: features || [],
-    contact,
-    createdAt: new Date().toISOString(), // Set the current time
-  };
+  try {
+    // Check if a dog with the same name and location already exists
+    const foundDog = await Dog.findOne({ name, location });
+    if (foundDog) {
+      return res.status(400).json({ msg: "A dog with the same name and location already exists." });
+    }
 
-  dogs.push(newDog);  // Add the new dog to the array
+    // Create a new dog instance
+    const newDog = new Dog({
+      name,
+      breed,
+      location,
+      fees,
+      sex,
+      age,
+      images: images || [],
+      description,
+      features: features || [],
+      contact,
+      createdAt: new Date().toISOString(),
+    });
 
-  res.status(200).json({ message: "Dog Successfully Added", dogs });
+    console.log(newDog); // Log the new dog instance (optional for debugging)
+
+    // Save the new dog to the database
+    await newDog.save();
+
+    // Respond with the newly added dog
+    res.status(200).json({ dog: newDog, msg: "Dog successfully added" });
+  } catch (error) {
+    console.error("Error adding dog:", error); // Log the error for debugging
+    res.status(500).json({ msg: "Error on adding dog" });
+  }
 };
 
 // PUT: Update an existing dog
-const putDog = (req, res) => {
-  const { id } = req.params;
-  const { name, breed, location, images, description, features, contact, fees, age, sex } = req.body;
+const putDog = async (req, res) => {
+  const id = req.params.id; // Get the dog ID from the URL parameter
+  const dogUpdates = req.body; // Get the updated data from the request body
 
-  const dogIndex = dogs.findIndex((dog) => dog.id === parseInt(id));
+  try {
+    // Find the dog by ID and update it with the new data
+    const updatedDog = await Dog.findByIdAndUpdate(id, dogUpdates, { new: true });
 
-  if (dogIndex === -1) {
-    return res.status(404).json({ error: "Dog not found" });
+    if (!updatedDog) {
+      return res.status(404).json({ msg: "Dog not found" });
+    }
+
+    res.status(200).json({ msg: "Dog Successfully Updated", updatedDog });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error on updating dog" });
   }
-
-  const updatedDog = {
-    ...dogs[dogIndex],
-    name: name || dogs[dogIndex].name,
-    breed: breed || dogs[dogIndex].breed,
-    location: location || dogs[dogIndex].location,
-    contact: contact || dogs[dogIndex].contact,
-    fees: fees || dogs[dogIndex].fees,
-    age: age || dogs[dogIndex].age,
-    sex: sex || dogs[dogIndex].sex,
-    images: images || dogs[dogIndex].images,
-    description: description || dogs[dogIndex].description,
-    features: features || dogs[dogIndex].features,
-  };
-
-  dogs[dogIndex] = updatedDog;
-
-  res.status(200).json({ message: "Dog Successfully Updated", updatedDog });
 };
 
 // DELETE: Remove a dog by ID
-const deleteDog = (req, res) => {
-  const { id } = req.params;
-  const dogIndex = dogs.findIndex((dog) => dog.id === parseInt(id));
+const deleteDog = async (req, res) => {
+  const id = req.params.id; // Get the dog ID from the URL parameter
 
-  if (dogIndex === -1) {
-    return res.status(404).json({ error: "Dog not found" });
+  try {
+    // Find the dog by ID and delete it
+    const deletedDog = await Dog.findByIdAndDelete(id);
+
+    if (!deletedDog) {
+      return res.status(404).json({ msg: "Dog not found" });
+    }
+
+    res.status(200).json({ msg: "Dog Successfully Deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error on deleting dog" });
   }
-
-  dogs.splice(dogIndex, 1); // Remove the dog from the array
-  res.status(204).send(); // Respond with no content
 };
 
 module.exports = { getDogs, postDog, putDog, deleteDog, getOneDog };
