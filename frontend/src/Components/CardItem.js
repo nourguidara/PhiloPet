@@ -37,10 +37,16 @@ const CardItem = ({ pet, type,createdAt }) => {
   
   return (
     <Card className="pet-card mb-4 shadow-sm" onClick={handleCardClick} >
+      
       <Carousel className="pet-carousel">
         {pet.images.map((image, index) => (
           <Carousel.Item key={index}>
-            <img className="d-block w-100 pet-image" src={image} alt={`${pet.name} - ${index + 1}`} />
+             <img
+                  className="d-block w-100 pet-image"
+                  src={`http://localhost:8000/${image}`} // Serve the image from the 'uploads' folder
+                  alt={`${pet.name} - ${index + 1}`}
+                />
+            {/* <img className="d-block w-100 pet-image" src={image} alt={`${pet.name} - ${index + 1}`} /> */}
           </Carousel.Item>
         ))}
       </Carousel>

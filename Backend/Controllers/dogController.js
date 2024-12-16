@@ -45,47 +45,33 @@ const getOneDog = async (req, res) => {
 
 // POST: Add a new dog
 const postDog = async (req, res) => {
-  const { name, breed, location, images, description, features, contact, fees, sex, age } = req.body;
-
-  // Check required fields
-  if (!name || !breed || !location) {
-    return res.status(400).json({ msg: "Name, breed, and location are required." });
-  }
-
   try {
-    // Check if a dog with the same name and location already exists
-    const foundDog = await Dog.findOne({ name, location });
-    if (foundDog) {
-      return res.status(400).json({ msg: "A dog with the same name and location already exists." });
-    }
-
-    // Create a new dog instance
+    // Add images to the body
+    const images = req.files.map((file) => file.path);
+    
+    // Create a new dog object with req.body and images included
     const newDog = new Dog({
-      name,
-      breed,
-      location,
-      fees,
-      sex,
-      age,
-      images: images || [],
-      description,
-      features: features || [],
-      contact,
-      createdAt: new Date().toISOString(),
+      ...req.body,
+      images,  // Adding images to the dog object
     });
-
-    console.log(newDog); // Log the new dog instance (optional for debugging)
 
     // Save the new dog to the database
     await newDog.save();
-
-    // Respond with the newly added dog
     res.status(200).json({ dog: newDog, msg: "Dog successfully added" });
   } catch (error) {
-    console.error("Error adding dog:", error); // Log the error for debugging
-    res.status(500).json({ msg: "Error on adding dog" });
+    console.error("Error adding dog:", error);
+
+    // Handle validation errors
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ msg: "Validation Error", errors: messages });
+    }
+
+    res.status(500).json({ msg: "Server error occurred" });
   }
 };
+
+
 
 // PUT: Update an existing dog
 const putDog = async (req, res) => {

@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import './PetForm.css';
+import axios from 'axios';
 
 const PetForm = () => {
   const [formData, setFormData] = useState({
     petType: '',
-    petPhotos: ['', '', ''],
+    petPhotos: [null, null, null],
     name: '',
     age: '',
     sex: '',
     breed: '',
     keyFacts: [],
     location: '',
+    description: '',
+    fee: 'Free',
+    feeAmount: '',
+    contactPhone: '',
   });
 
   const citiesInTunisia = [
@@ -41,11 +46,57 @@ const PetForm = () => {
     setFormData({ ...formData, keyFacts: updatedKeyFacts });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data Submitted:', formData);
-    alert('Form submitted successfully!');
+  
+    const formSubmissionData = new FormData();
+    formSubmissionData.append("name", formData.name);
+    formSubmissionData.append("age", formData.age);
+    formSubmissionData.append("sex", formData.sex);
+    formSubmissionData.append("breed", formData.breed);
+    formSubmissionData.append("location", formData.location);
+    formSubmissionData.append("description", formData.description);
+    formSubmissionData.append("fees", formData.fee === 'Free' ? 0 : Number(formData.feeAmount));
+    formSubmissionData.append("features", JSON.stringify(formData.keyFacts)); // Send key facts as JSON string
+    formSubmissionData.append("contact", formData.contactPhone);
+
+    // Append images (only if not null)
+    formData.petPhotos.forEach((photo, index) => {
+      if (photo) {
+        formSubmissionData.append("images", photo); // Append the actual file
+      }
+    });
+  
+    try {
+      const response = await axios.post('http://localhost:8000/api/dogs', formSubmissionData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Important for file uploads
+        }
+      });
+      console.log("Response:", response.data);
+      alert('Pet added successfully!');
+      
+      // Reset form fields after success
+      setFormData({
+        petType: '',
+        petPhotos: [null, null, null], // Reset images
+        name: '',
+        age: '',
+        sex: '',
+        breed: '',
+        keyFacts: [],
+        location: '',
+        description: '',
+        fee: 'Free',
+        feeAmount: '',
+        contactPhone: '',
+      });
+    } catch (error) {
+      console.error('Error adding pet:', error.response ? error.response.data : error.message);
+      alert('Failed to add pet. Please try again.');
+    }
   };
+  
 
   return (
     <form className="pet-form" onSubmit={handleSubmit}>
@@ -75,6 +126,19 @@ const PetForm = () => {
           ))}
         </select>
       </label>
+
+      <h3>Contact</h3>
+      Phone:
+      <label>
+     
+    <input 
+      type="tel" 
+      name="contactPhone" 
+      value={formData.contactPhone} 
+      onChange={handleChange} 
+      placeholder="Enter your phone number" 
+    />
+  </label>
 
       {/* Pet Photos */}
       <div className="photo-section">

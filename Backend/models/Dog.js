@@ -37,13 +37,13 @@ const dogSchema = new Schema({
     default: 0,
   },
   age: {
-    type: Number, // Age in years (required)
+    type: String, // Age in years (required)
     required: true,
   },
   sex: {
     type: String, // "Male" or "Female"
     required: true,
-    enum: ["Male", "Female"], // Restrict to only these two options
+    // enum: ["Male", "Female"], // Restrict to only these two options
   },
   createdAt: {
     type: Date,
