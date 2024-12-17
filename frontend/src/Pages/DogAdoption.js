@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CardItem from '../Components/CardItem'
-// import { dogs } from '../Components/data';
+import CardItem from '../Components/CardItem';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 
 const DogAdoption = () => {
-
   const [dogs, setDogs] = useState([]);
 
   const fetchDogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/dogs');
-      setDogs(response.data.dogs || []); // Ensure data structure matches backend response
+      const response = await axios.get('http://localhost:8000/api/pets'); // Fetch all pets
+      const filteredDogs = response.data.pets.filter((pet) => pet.species === 'dog'); // Filter dogs
+      setDogs(filteredDogs);
     } catch (error) {
       console.error('Error fetching dogs:', error);
     }
@@ -24,18 +23,18 @@ const DogAdoption = () => {
 
   return (
     <div>
-
+     
       <div className='CardStyle'>
-
-      {dogs.map((dog) => (
-          
-            <CardItem key={dog._id} pet={dog} type="dog" createdAt={dog.createdAt} />
-          
+        {dogs.map((dog) => (
+          <CardItem 
+            key={dog.id} 
+            pet={dog} 
+            type="dog" 
+            createdAt={dog.createdAt} 
+          />
         ))}
       </div>
-
-      </div>
-
+    </div>
   );
 };
 

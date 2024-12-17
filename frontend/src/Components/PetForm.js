@@ -57,8 +57,13 @@ const PetForm = () => {
     formSubmissionData.append("location", formData.location);
     formSubmissionData.append("description", formData.description);
     formSubmissionData.append("fees", formData.fee === 'Free' ? 0 : Number(formData.feeAmount));
-    formSubmissionData.append("features", JSON.stringify(formData.keyFacts)); // Send key facts as JSON string
     formSubmissionData.append("contact", formData.contactPhone);
+    formSubmissionData.append("species", formData.petType.toLowerCase());
+    
+    formData.keyFacts.forEach((feature) => {
+      formSubmissionData.append("features", feature);
+    });
+    
 
     // Append images (only if not null)
     formData.petPhotos.forEach((photo, index) => {
@@ -68,7 +73,7 @@ const PetForm = () => {
     });
   
     try {
-      const response = await axios.post('http://localhost:8000/api/dogs', formSubmissionData, {
+      const response = await axios.post('http://localhost:8000/api/pets', formSubmissionData, {
         headers: {
           "Content-Type": "multipart/form-data", // Important for file uploads
         }
@@ -253,11 +258,11 @@ const PetForm = () => {
           <input
             type="checkbox"
             
-            value="Friendly with children and cats"
-            checked={formData.keyFacts.includes('Friendly with children and cats')}
+            value="Friendly with children and babies"
+            checked={formData.keyFacts.includes('Friendly with children and babies')}
             onChange={handleKeyFactChange}
           />
-          Friendly with children and cats
+          Friendly with children and babies
         </label>
         <label>
           <input

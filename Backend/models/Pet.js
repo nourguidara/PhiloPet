@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Define the Dog schema
-const dogSchema = new Schema({
+// Define the Pet schema (for both dogs and cats)
+const petSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -28,13 +28,16 @@ const dogSchema = new Schema({
     default: [],
   },
   contact: {
-    type: String,
-    required: true,
+    
+      type: String, 
+      required: true,
+    
+   
   },
   fees: {
-    type: Number, // Fee amount (optional, can be omitted when adding a dog)
+    type: Number, // Fee amount (optional, can be omitted when adding a pet)
     required: false,
-    default: 0,
+    default: 'free',
   },
   age: {
     type: String, // Age in years (required)
@@ -45,13 +48,18 @@ const dogSchema = new Schema({
     required: true,
     // enum: ["Male", "Female"], // Restrict to only these two options
   },
+  species: {
+    type: String,
+    enum: ["dog", "cat"], // Ensure the pet is either a dog or cat
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now, // Automatically sets the date when the record is created
   },
 });
 
-// Create the Dog model
-const Dog = mongoose.model("Dog", dogSchema);
+// Create the Pet model
+const Pet = mongoose.model("Pet", petSchema);
 
-module.exports = Dog;
+module.exports = Pet;

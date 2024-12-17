@@ -13,12 +13,16 @@ const CardItem = ({ pet, type,createdAt }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
+    console.log("Toggled pet:", pet.id);
     toggleWishlist(pet);
   };
 
-  const handleCardClick = () => {
-    navigate(`/pet-details/${pet.id}`);
+  const handleCardClick = (petId) => {
+    console.log("Navigating to pet details with ID:", petId);
+    navigate(`/pet-details/${petId}`);
   };
+  
+  
 
   const isNew = () => {
     const now = new Date();
@@ -36,7 +40,7 @@ const CardItem = ({ pet, type,createdAt }) => {
   };
   
   return (
-    <Card className="pet-card mb-4 shadow-sm" onClick={handleCardClick} >
+    <Card className="pet-card mb-4 shadow-sm" onClick={()=>handleCardClick(pet._id)} >
       
       <Carousel className="pet-carousel">
         {pet.images.map((image, index) => (
@@ -58,23 +62,24 @@ const CardItem = ({ pet, type,createdAt }) => {
           <small>Location: {pet.location}</small>
         </Card.Text>
         <Row className="icons-row mb-3">
-          {pet.features &&
-            pet.features.map((description, index) => (
-              <Col key={index}>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip>{description}</Tooltip>}
-                >
-                  <div className="icon-container">{iconMapping[description]}</div>
-                </OverlayTrigger>
-              </Col>
-            ))}
-        </Row>
+  {pet.features && 
+    pet.features.map((description, index) => (
+      <Col key={index}>
+        <OverlayTrigger
+          placement="top"
+          overlay={<Tooltip>{description}</Tooltip>}
+        >
+          <div className="icon-container">{iconMapping[description]}</div>
+        </OverlayTrigger>
+      </Col>
+    ))}
+</Row>
+
 
         <div className="d-flex justify-content-between align-items-center">
           <div>
            
-            <Button variant="light" onClick={handleClick}>
+            <Button variant="light" onClick={(e) => handleClick(e)}>
             <FaHeart style={{ color: isLiked ? '#b68147' : 'black' }} />
             </Button>
           </div>

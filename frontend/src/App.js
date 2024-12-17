@@ -6,6 +6,7 @@ import SignUpPage from './Pages/SignUpPage';
 import Shop from './Pages/Shop';
 import DogAdoption from './Pages/DogAdoption';
 import CatAdoption from './Pages/CatAdoption';
+// import PetAdoption from './Pages/PetAdoption';
 import GivePet from './Pages/GivePet';
 import HomePage from './Pages/HomePage';
 import Wishlist from './Pages/Wishlist';
@@ -31,6 +32,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/dog-adoption" element={<DogAdoption />} />
           <Route path="/cat-adoption" element={<CatAdoption />} />
+          
           <Route path="/give-pet" element={<GivePet />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/pet-details/:id" element={<PetDetails />} />

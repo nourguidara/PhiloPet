@@ -54,6 +54,7 @@ function NavigationBar() {
                         <NavDropdown title="Adoption" id="basic-nav-dropdown"  className="custom-dropdown">
                             <NavDropdown.Item as={Link} to="/dog-adoption">Dog</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/cat-adoption">Cat</NavDropdown.Item>
+                           
                             <NavDropdown.Item as={Link} to="/give-pet">Give a Pet</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
