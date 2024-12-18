@@ -1,0 +1,54 @@
+.admin-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  .admin-dashboard h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .table-container {
+    margin: 20px auto;
+    max-width: 90%;
+    overflow-x: auto;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-container th, .table-container td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-container th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .table-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table-container tr:hover {
+    background-color: #ddd;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  

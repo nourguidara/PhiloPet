@@ -17,7 +17,8 @@ import { WishlistProvider } from './Components/WishlistContext';
 import AboutUsPage from './Pages/AboutUsPage';
 import TipsPage from './Pages/TipsPage';
 import ArticlePage from './Pages/ArticlePage';
-
+import AdminDashboard from './Components/AdminDashboard';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
   return (
@@ -29,11 +30,18 @@ function App() {
         <Routes>
 
       <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/dog-adoption" element={<DogAdoption />} />
-          <Route path="/cat-adoption" element={<CatAdoption />} />
+      <Route
+          path="/shop"
+          element={
+            <ProtectedRoute>
+              <Shop />
+            </ProtectedRoute>
+          }
+        />
+          <Route path="/dog-adoption" element={<ProtectedRoute><DogAdoption /></ProtectedRoute>} />
+          <Route path="/cat-adoption" element={<ProtectedRoute><CatAdoption /></ProtectedRoute>} />
           
-          <Route path="/give-pet" element={<GivePet />} />
+          <Route path="/give-pet" element={<ProtectedRoute><GivePet /></ProtectedRoute>} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/pet-details/:id" element={<PetDetails />} />
 
@@ -42,9 +50,16 @@ function App() {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+
+        <Route 
+  path="/admindashboard" 
+  element={<AdminDashboard />} 
+/>
+
+
+
+        
       </Routes>
-
-
       <FooterNav />
         </BrowserRouter>
       </WishlistProvider>
