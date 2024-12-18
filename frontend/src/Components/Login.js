@@ -96,7 +96,7 @@ function Login() {
   };
 
   // Handle form submission
-  
+  const from = location.state?.from?.pathname || "/";
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
