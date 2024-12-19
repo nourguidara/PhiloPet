@@ -1,13 +1,14 @@
+
 // import axios from "axios";
 // import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
+// import { useNavigate, useLocation, Link } from "react-router-dom";
 // import "./Login.css";
-// import { useLocation } from "react-router-dom";
+
 
 // function Login() {
 //   const [user, setUser] = useState({ email: "", password: "" });
 //   const navigate = useNavigate();
+//   const location = useLocation();
 
 //   // Handle input changes
 //   const handleChange = (e) => {
@@ -15,30 +16,30 @@
 //   };
 
 //   // Handle form submission
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await axios.post("http://localhost:8000/api/login", user); // POST to backend
-//       const token = response.data.token;
-//       const role = response.data.user.role; // Extract user role directly from the backend response
+//   const from = location.state?.from?.pathname || "/";
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const response = await axios.post("http://localhost:8000/api/login", user);
+//     const token = response.data.token;
+//     const role = response.data.user.role;
 
-//       // Save token and role in localStorage
-//       localStorage.setItem("token", token);
-//       localStorage.setItem("role", role);
+//     localStorage.setItem("token", token);
+//     localStorage.setItem("role", role);
 
-//       alert("Login successful");
-
-//       // Redirect based on the user's role
-//       if (role === "admin") {
-//         navigate("/admindashboard"); // Redirect to Admin Dashboard
-//       } else {
-//         navigate("/"); // Redirect to Homepage or User Dashboard
-//       }
-//     } catch (error) {
-//       console.error("Login failed:", error.response?.data || error);
-//       alert(error.response?.data?.msg || "Login failed");
+//     alert("Login successful");
+//     console.log("Token set in localStorage:", token);
+//     // Redirect to the original requested page or fallback
+//     if (role === "admin") {
+//       navigate("/admindashboard");
+//     } else {
+//       navigate(from); // Redirect to the original requested page
 //     }
-//   };
+//   } catch (error) {
+//     console.error("Login failed:", error.response?.data || error);
+//     alert(error.response?.data?.msg || "Login failed");
+//   }
+// };
 
 //   return (
 //     <div className="login">
@@ -78,12 +79,12 @@
 // }
 
 // export default Login;
-
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import "./Login.css";
+import { jwtDecode } from 'jwt-decode';
 
+import "./Login.css";
 
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -97,29 +98,36 @@ function Login() {
 
   // Handle form submission
   const from = location.state?.from?.pathname || "/";
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post("http://localhost:8000/api/login", user);
-    const token = response.data.token;
-    const role = response.data.user.role;
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("role", role);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8000/api/login", user);
+      const token = response.data.token;
+      const role = response.data.user.role;
 
-    alert("Login successful");
-    console.log("Token set in localStorage:", token);
-    // Redirect to the original requested page or fallback
-    if (role === "admin") {
-      navigate("/admindashboard");
-    } else {
-      navigate(from); // Redirect to the original requested page
+      // Store token and role in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+
+      // Decode the token and update state if needed
+      const decoded = jwtDecode(token); // Decode the token to verify the payload
+      console.log("Decoded token:", decoded); // Check the token content
+
+      alert("Login successful");
+      console.log("Token set in localStorage:", token);
+
+      // Redirect to the appropriate page based on the role
+      if (role === "admin") {
+        navigate("/admindashboard");
+      } else {
+        navigate(from); // Redirect to the original requested page
+      }
+    } catch (error) {
+      console.error("Login failed:", error.response?.data || error);
+      alert(error.response?.data?.msg || "Login failed");
     }
-  } catch (error) {
-    console.error("Login failed:", error.response?.data || error);
-    alert(error.response?.data?.msg || "Login failed");
-  }
-};
+  };
 
   return (
     <div className="login">
@@ -132,6 +140,7 @@ const handleSubmit = async (e) => {
             name="email"
             placeholder="Enter your email"
             onChange={handleChange}
+            value={user.email}
           />
         </div>
         <div className="form-group">
@@ -141,6 +150,7 @@ const handleSubmit = async (e) => {
             name="password"
             placeholder="Enter your password"
             onChange={handleChange}
+            value={user.password}
           />
         </div>
         <button className="submit-button" type="submit">

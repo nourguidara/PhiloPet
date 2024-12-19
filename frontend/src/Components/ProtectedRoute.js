@@ -43,22 +43,46 @@
 
 // export default ProtectedRoute;
 
-import React from "react";
+// import React from "react";
 
+// import { Navigate, useLocation } from "react-router-dom";
+
+// const ProtectedRoute = ({ children }) => {
+//   const token = localStorage.getItem("token");
+//   const location = useLocation();
+
+//   if (!token) {
+//     // Pass the current path as the "from" state
+//     return <Navigate to="/login" state={{ from: location }} />;
+//   }
+
+//   return children;
+// };
+
+
+// export default ProtectedRoute;
+
+import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, adminOnly = false }) => {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role"); // Assuming the role is stored in localStorage after login
   const location = useLocation();
 
+  // If no token, redirect to login with the current location saved in state
   if (!token) {
-    // Pass the current path as the "from" state
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
+  // If the route is admin-only and the user is not an admin, redirect to the homepage
+  if (adminOnly && role !== "admin") {
+    return <Navigate to="/" />;
+  }
+
+  // If the user is authorized, render the children components
   return children;
 };
-
 
 export default ProtectedRoute;
 

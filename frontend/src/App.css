@@ -27,7 +27,7 @@
   flex-wrap: wrap;
   gap: 44px;
   justify-content: center;
-  margin-top: 12%;
+  margin-top: 5%;
 }
 
 
@@ -49,3 +49,51 @@ body {
   background-image: url('https://img.freepik.com/free-vector/cartoon-style-paw-print-pattern-background-fauna-fun-vector_1017-47622.jpg?t=st=1733053309~exp=1733056909~hmac=d0658d5bd60a7aaf64ea31295daacf86135b9de1ee2796622edc9d5350a52ddd&w=2000');
 
 }
+
+/* Filter section on the right side */
+.filter-section {
+      
+  
+  background-color: #e4e0f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-content:stretch;
+  align-items: center;
+  justify-self:baseline;
+  margin-left: 90px;
+  margin-top: 68px;
+  
+}
+
+/* Align the label and select elements */
+.filter-section label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Darker color for label text */
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Style for the select dropdown */
+.filter-section select {
+  font-size: 16px;
+  padding: 8px;
+  border: 2px solid #ff7f00;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  width:100%;
+}
+
+/* Change the border color on hover/focus */
+.filter-section select:hover,
+.filter-section select:focus {
+  border-color: #ff7f00;
+}
+

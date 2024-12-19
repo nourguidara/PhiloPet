@@ -1,13 +1,15 @@
 .login {
     max-width: 400px;
-    margin: 50px auto;
+    margin: 120px auto;
     padding: 20px;
     border: 2px solid #DA8359;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* This will still apply to the login form itself */
-    opacity: 0.9; /* Slight transparency for better contrast with the background */
+    background-color: #ffffff;
+    opacity: 0.9;
+    height: 484px;
+    align-content: center;
 }
 
 .login h2 {
