@@ -5,13 +5,26 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaHeart } from 'react-icons/fa';
 import { useWishlist } from './WishlistContext';
 import "./NavigationBar.css"; 
+import { UserRole } from "./UserRole";
+import { useNavigate } from "react-router-dom";
+
+
 
 function NavigationBar() {
     const { wishlist } = useWishlist();
+
+    const role = UserRole();
+    const navigate=useNavigate()
+    const handleSignOut = () => {
+    if (window.confirm("Are you sure you want to SignOut")){
+        localStorage.removeItem("token"); // Remove the token from local storage
+        navigate("/"); // Navigate to the home page or login page
+    }
+    };
 
     return (
         <>
@@ -41,7 +54,18 @@ function NavigationBar() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="custom-nav">
-                            <Nav.Link as={Link} to="/" className="custom-link">Home</Nav.Link>
+
+                        {role === 'admin' && (
+                        <Nav.Link>
+                         <NavLink as={Link} to="/admindashboard" className="custom-link">
+                            Messages
+                            </NavLink>
+                             </Nav.Link>
+                            )}
+
+                        {role === 'user' && (
+                             <Nav.Link className="navUser">  
+                            <NavLink as={Link} to="/" className="custom-link">Home</NavLink>
                             
                             {/* Shop Dropdown */}
                             <NavDropdown title="Shop" id="shop-nav-dropdown" className="custom-dropdown">
@@ -83,9 +107,43 @@ function NavigationBar() {
                                 </NavDropdown.Item>
                             </NavDropdown>
 
-                            <Nav.Link as={Link} to="/about-us" className="custom-link">
+                            <NavLink as={Link} to="/about-us" className="custom-link">
                                 About Us
-                            </Nav.Link>
+                            </NavLink>
+
+                            </Nav.Link> 
+                        )}
+
+                        <Nav.Link>
+                        {role ? (
+                        <Link
+                        to="/"
+                        onClick={handleSignOut}
+                        style={{
+                        
+                             borderRadius:" 10px",
+                             color:"#ce8761" ,
+                             fontWeight: "700",
+
+                        }}
+                        >
+                        Sign Out
+                        </Link>
+                        ) : (
+                        <Link
+                        to="/signUp"
+                        style={{
+                            borderRadius:" 10px",
+                            color:"#ce8761" ,
+                            fontWeight: "700",
+                        }}
+                        >
+                        SignUp/In
+                        </Link>
+                        )}
+                        </Nav.Link>
+                            
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

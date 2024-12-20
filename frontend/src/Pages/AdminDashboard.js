@@ -35,7 +35,7 @@ const AdminDashboard = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Admin Dashboard</h2>
+      
       <h3>Contact Messages</h3>
 
       {/* Display all messages */}
